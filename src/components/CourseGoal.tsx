@@ -1,26 +1,23 @@
 // import { ReactNode } from "react";
 import { type PropsWithChildren } from "react";
 
-/** 
-type CourseGoalsProps = {
-  title: string;
-  children: ReactNode;
-};
-*/
-
 // the PropsWithChildren generic takes as a type all other props required in the component
-type CourseGoalsProps = PropsWithChildren<{ title: string }>;
+type CourseGoalsProps = PropsWithChildren<{
+  id: number;
+  title: string;
+  onDelete: (id: number) => void;
+}>;
 
-const CourseGoals = ({ title, children }: CourseGoalsProps) => {
+const CourseGoal = ({ id, title, onDelete, children }: CourseGoalsProps) => {
   return (
     <article>
       <div>
         <h2>{title}</h2>
         {children}
-        <button>Delete</button>
       </div>
+      <button onClick={() => onDelete(id)}>Delete</button>
     </article>
   );
 };
 
-export default CourseGoals;
+export default CourseGoal;
