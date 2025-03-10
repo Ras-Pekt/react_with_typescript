@@ -11,9 +11,13 @@ const NewGoal = ({ onAddGoal }: NewGoalsProps) => {
     const goal = goalRef.current!.value;
     const summary = summaryRef.current!.value;
 
-    event.currentTarget.reset();
-
-    onAddGoal({ goal, summary });
+    // TODO: Add better validation
+    if (goal && summary) {
+      event.currentTarget.reset();
+      onAddGoal({ goal, summary });
+    } else {
+      alert("Please enter both a goal and a summary.");
+    }
   };
 
   return (
