@@ -2,23 +2,18 @@ import Header from "./components/Header";
 import goalsImg from "./assets/goals.jpg";
 import { useState } from "react";
 import CourseGoalList from "./components/CourseGoalList";
-
-export type CourseGoal = {
-  id: number;
-  title: string;
-  description: string;
-};
+import NewGoal from "./components/NewGoal";
+import { CourseGoal, NewGoal as NGoal } from "./schema/Schema";
 
 function App() {
   const [goals, setGoals] = useState<CourseGoal[]>([]);
 
-  const newGoal: CourseGoal = {
-    id: Math.random(),
-    title: "Learn React with Typescript",
-    description: "Learn it from the ground up!",
-  };
-
-  const addGoalHandler = () => {
+  const addGoalHandler = ({ goal, summary }: NGoal) => {
+    const newGoal: CourseGoal = {
+      id: Math.random(),
+      title: goal,
+      description: summary,
+    };
     setGoals((prevGoals) => {
       return [...prevGoals, newGoal];
     });
@@ -36,7 +31,9 @@ function App() {
         <h1>Your Course Goals</h1>
       </Header>
 
-      <button onClick={addGoalHandler}>Add Goal</button>
+      {/* <button onClick={addGoalHandler}>Add Goal</button> */}
+
+      <NewGoal onAddGoal={addGoalHandler} />
 
       <CourseGoalList goals={goals} onDelete={deleteGoalHandler} />
     </main>

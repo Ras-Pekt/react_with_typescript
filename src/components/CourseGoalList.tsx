@@ -1,10 +1,5 @@
 import CourseGoal from "./CourseGoal";
-import { type CourseGoal as Goal } from "../App";
-
-type CourseGoalListProps = {
-  goals: Goal[];
-  onDelete: (id: number) => void;
-};
+import { CourseGoalListProps } from "../schema/Props";
 
 const CourseGoalList = ({ goals, onDelete }: CourseGoalListProps) => {
   return (

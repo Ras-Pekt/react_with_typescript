@@ -1,6 +1,4 @@
-import { type PropsWithChildren } from "react";
-
-type HeaderProps = PropsWithChildren<{ image: { src: string; alt: string } }>;
+import { HeaderProps } from "../schema/Props";
 
 const Header = ({ image, children }: HeaderProps) => {
   return (
