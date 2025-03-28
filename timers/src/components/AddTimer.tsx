@@ -12,8 +12,13 @@ const AddTimer = () => {
 
   const handleSaveTimer = (data: unknown) => {
     const extractedData = data as { name: string; duration: string };
+    if (!extractedData.name || !extractedData.duration) {
+      alert("Please enter a valid name and duration.");
+      throw new Error("Invalid timer data.");
+    }
     addTimer({ name: extractedData.name, duration: +extractedData.duration });
   };
+
   return (
     <Form onSave={handleSaveTimer} id="add-timer">
       <Input label="Name" id="name" type="text" ref={nameRef} />
